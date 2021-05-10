@@ -8,13 +8,8 @@ import java.io.*;
 
 import java.net.URL;
 
-
-public class DropboxAPITest {
-
-    private final String token = "2OUrECyC26wAAAAAAAAAAX2Tb-GwQ-j-sgerWM4uzvUsked-OwICFj4gWDA1eFeX";
-    private final String imageLocalPath = "cat.jpg";
-
-    private void downloadImage(String imageAddress) throws IOException {
+class FileDownloader {
+    public static void downloadImage(String imageAddress, String imageLocalPath) throws IOException {
         URL url = new URL(imageAddress);
 
         InputStream in = new BufferedInputStream(url.openStream());
@@ -33,13 +28,23 @@ public class DropboxAPITest {
         fos.write(res);
         fos.close();
     }
+}
+
+public class DropboxAPITest {
+
+    private final String token = "2OUrECyC26wAAAAAAAAAAX2Tb-GwQ-j-sgerWM4uzvUsked-OwICFj4gWDA1eFeX";
+    private final String imageLocalPath = "cat.jpg";
+
+    private final String uploadURL = "https://content.dropboxapi.com/2/files/upload";
+    private final String getMetadataURL = "https://api.dropboxapi.com/2/files/get_metadata";
+    private final String deleteURL = "https://api.dropboxapi.com/2/files/delete_v2";
 
     @Test
     public void a_testUpload() throws IOException {
 
-        downloadImage("https://cdn.designsmaz" +
+        FileDownloader.downloadImage("https://cdn.designsmaz" +
                 ".com/wp-content/uploads/2016/03/" +
-                "Cat-with-Sunglasses-Background.jpg");
+                "Cat-with-Sunglasses-Background.jpg", imageLocalPath);
 
         JSONObject apiArg = new JSONObject();
         apiArg.put("mode","add");
@@ -55,7 +60,7 @@ public class DropboxAPITest {
                                 "charset=dropbox-cors-hack",
                         "Authorization", "Bearer " + token)
                 .body(FileUtils.readFileToByteArray(file))
-                .when().post("https://content.dropboxapi.com/2/files/upload")
+                .when().post(uploadURL)
                 .then().statusCode(200);
 
         file.delete();
@@ -71,7 +76,7 @@ public class DropboxAPITest {
                 .headers("Authorization", "Bearer " + token,
                         "Content-Type","application/json")
                 .body(requestParam.toJSONString())
-                .when().post("https://api.dropboxapi.com/2/files/get_metadata")
+                .when().post(getMetadataURL)
                 .then().statusCode(200);
     }
 
@@ -84,7 +89,7 @@ public class DropboxAPITest {
                 .headers("Authorization", "Bearer " + token,
                         "Content-Type","application/json")
                 .body(requestParam.toJSONString())
-                .when().post("https://api.dropboxapi.com/2/files/delete_v2")
+                .when().post(deleteURL)
                 .then().statusCode(200);
 
     }

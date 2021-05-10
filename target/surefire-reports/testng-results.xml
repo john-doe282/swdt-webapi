@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results total="3" passed="3" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2021-05-10T18:28:46Z" name="DropboxAPITest" finished-at="2021-05-10T18:28:53Z" duration-ms="6672">
+    <groups>
+    </groups>
+    <test started-at="2021-05-10T18:28:46Z" name="Command line test" finished-at="2021-05-10T18:28:53Z" duration-ms="6672">
+      <class name="DropboxAPITest">
+        <test-method signature="a_testUpload()[pri:0, instance:DropboxAPITest@63e2203c]" started-at="2021-05-10T21:28:46Z" name="a_testUpload" finished-at="2021-05-10T21:28:51Z" duration-ms="4684" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- a_testUpload -->
+        <test-method signature="b_testGetMetadata()[pri:0, instance:DropboxAPITest@63e2203c]" started-at="2021-05-10T21:28:51Z" name="b_testGetMetadata" finished-at="2021-05-10T21:28:52Z" duration-ms="757" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- b_testGetMetadata -->
+        <test-method signature="c_testDelete()[pri:0, instance:DropboxAPITest@63e2203c]" started-at="2021-05-10T21:28:52Z" name="c_testDelete" finished-at="2021-05-10T21:28:53Z" duration-ms="1214" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- c_testDelete -->
+      </class> <!-- DropboxAPITest -->
+    </test> <!-- Command line test -->
+  </suite> <!-- DropboxAPITest -->
+</testng-results>
